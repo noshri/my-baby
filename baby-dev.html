@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שינה, ערות ופעילות מונטסורית — מדריך כללי לתינוקות</title>
+<style>
+  :root{
+    --cream:#fbf6ee;
+    --sand:#f0e6d6;
+    --sage:#8ba888;
+    --sage-dark:#5f7d5c;
+    --rose:#d9a9a0;
+    --rose-dark:#b97b70;
+    --ink:#3a352e;
+    --muted:#7a7266;
+    --card:#ffffff;
+    --line:#e7ddc9;
+    --warn:#c98a4b;
+    --stop:#b96a5e;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Heebo","Assistant","Segoe UI",Arial,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  header.top{
+    background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 100%);
+    color:#fff;
+    padding:28px 20px 22px;
+    text-align:center;
+    position:relative;
+  }
+  header.top h1{
+    margin:0 0 6px;
+    font-size:1.6rem;
+    font-weight:700;
+  }
+  header.top p{
+    margin:0;
+    opacity:.92;
+    font-size:.95rem;
+  }
+  #ageBanner{
+    display:inline-block;
+    margin-top:14px;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.4);
+    border-radius:999px;
+    padding:8px 20px;
+    font-size:.95rem;
+    font-weight:600;
+  }
+  #birthdateBox{
+    margin-top:14px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.4);
+    border-radius:999px;
+    padding:6px 16px;
+    font-size:.88rem;
+  }
+  #birthdateBox label{ opacity:.95; }
+  #birthdateBox input[type=date]{
+    border:none;
+    border-radius:999px;
+    padding:4px 10px;
+    font-family:inherit;
+    font-size:.88rem;
+    background:#fff;
+    color:var(--ink);
+  }
+  .current-badge{ margin-inline-start:4px; }
+  nav.tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    padding:16px 12px;
+    background:var(--sand);
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-bottom:2px solid var(--line);
+  }
+  nav.tabs button{
+    border:2px solid transparent;
+    background:#fff;
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:999px;
+    font-size:.88rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.15s;
+    white-space:nowrap;
+  }
+  nav.tabs button:hover{ border-color:var(--sage); }
+  nav.tabs button.active{
+    background:var(--sage-dark);
+    color:#fff;
+  }
+  nav.tabs button.tracker-btn{
+    background:var(--rose-dark);
+    color:#fff;
+  }
+  nav.tabs button.tracker-btn.active{
+    background:var(--rose-dark);
+    box-shadow:0 0 0 3px rgba(185,122,112,.3);
+  }
+  main{
+    max-width:980px;
+    margin:0 auto;
+    padding:22px 16px 90px;
+  }
+  .stagepanel{ display:none; animation:fade .25s ease; }
+  .stagepanel.active{ display:block; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .stage-hero{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:18px;
+  }
+  .stage-hero h2{ margin:0 0 4px; font-size:1.35rem; color:var(--sage-dark);}
+  .stage-hero .sub{ color:var(--muted); margin-bottom:14px; font-size:.92rem;}
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:10px;
+  }
+  .stat{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:10px 12px;
+  }
+  .stat .num{ font-weight:700; color:var(--rose-dark); font-size:1rem;}
+  .stat .lbl{ font-size:.78rem; color:var(--muted);}
+
+  .callout{
+    background:#fff6e6;
+    border:1px solid #ecd9ab;
+    border-radius:12px;
+    padding:14px 16px;
+    margin:16px 0;
+    font-size:.9rem;
+  }
+  .callout b{ color:var(--warn); }
+
+  section.block{
+    margin:22px 0;
+  }
+  section.block h3{
+    font-size:1.05rem;
+    color:var(--sage-dark);
+    border-bottom:2px solid var(--line);
+    padding-bottom:6px;
+    margin-bottom:12px;
+  }
+  ul.snapshot{ margin:0; padding-inline-start:20px; }
+  ul.snapshot li{ margin-bottom:6px; font-size:.93rem; }
+  ul.snapshot li b{ color:var(--ink); }
+
+  .rhythm{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .rhythm .row{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:8px 12px;
+    font-size:.88rem;
+  }
+  .rhythm .time{
+    min-width:78px;
+    font-weight:700;
+    color:var(--rose-dark);
+  }
+  .rhythm .tag{
+    display:inline-block;
+    font-size:.72rem;
+    padding:1px 8px;
+    border-radius:999px;
+    margin-inline-end:6px;
+    color:#fff;
+  }
+  .tag.sleep{ background:#8a9bc4; }
+  .tag.feed{ background:#c98a4b; }
+  .tag.play{ background:var(--sage); }
+  .tag.wind{ background:#b898c4; }
+  .note-row{ justify-content:center; text-align:center; background:var(--sand); font-style:italic; color:var(--muted); }
+
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,.03);
+  }
+  .card .card-head{
+    background:var(--sand);
+    padding:12px 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .card .card-head .icon{ font-size:1.4rem; }
+  .card .card-head h4{ margin:0; font-size:1rem; color:var(--ink); }
+  .card .card-body{ padding:14px; }
+  .card .field{ margin-bottom:10px; }
+  .card .field:last-child{ margin-bottom:0; }
+  .card .field .k{
+    font-size:.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    display:block;
+    margin-bottom:2px;
+  }
+  .card .field.why .k{ color:var(--sage-dark); }
+  .card .field.how .k{ color:#6b7fb0; }
+  .card .field.stop .k{ color:var(--stop); }
+  .card .field.end .k{ color:var(--warn); }
+  .card .field p{ margin:0; font-size:.88rem; }
+
+  .principles{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+  }
+  .principle{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    font-size:.87rem;
+  }
+  .principle b{ display:block; color:var(--sage-dark); margin-bottom:4px; }
+
+  .cue-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:14px;
+  }
+  .cue-col{
+    background:var(--card);
+    border-radius:14px;
+    border:1px solid var(--line);
+    padding:14px 16px;
+  }
+  .cue-col h4{ margin:0 0 8px; font-size:.95rem;}
+  .cue-col.tired h4{ color:#6b7fb0; }
+  .cue-col.over h4{ color:var(--stop); }
+  .cue-col.happy h4{ color:var(--sage-dark); }
+  .cue-col ul{ margin:0; padding-inline-start:18px; font-size:.85rem; }
+  .cue-col li{ margin-bottom:4px; }
+
+  /* Tracker */
+  #tracker{ display:none; }
+  #tracker.active{ display:block; }
+  .tracker-month{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    margin-bottom:14px;
+  }
+  .tracker-month.current{
+    border:2px solid var(--rose-dark);
+    background:#fff9f7;
+  }
+  .tracker-month h3{
+    margin:0 0 4px;
+    font-size:1.05rem;
+    color:var(--sage-dark);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .tracker-month .badge{
+    background:var(--rose-dark);
+    color:#fff;
+    font-size:.7rem;
+    padding:2px 10px;
+    border-radius:999px;
+  }
+  .milestone-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:6px 16px; margin:10px 0; }
+  .milestone-list label{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    font-size:.87rem;
+    cursor:pointer;
+    padding:4px 0;
+  }
+  .milestone-list input{ margin-top:3px; }
+  .tracker-month textarea{
+    width:100%;
+    min-height:54px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px 10px;
+    font-family:inherit;
+    font-size:.85rem;
+    resize:vertical;
+    background:var(--cream);
+  }
+  .tracker-note-label{ font-size:.78rem; color:var(--muted); display:block; margin:8px 0 4px; }
+
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:.8rem;
+    padding:20px;
+  }
+  .save-pill{
+    position:fixed;
+    bottom:16px;
+    left:16px;
+    background:var(--sage-dark);
+    color:#fff;
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:.82rem;
+    opacity:0;
+    transition:opacity .3s;
+    pointer-events:none;
+  }
+  .save-pill.show{ opacity:1; }
+
+  .stage-title{ margin-bottom:14px; }
+  .stage-title h2{ margin:0 0 4px; font-size:1.35rem; color:var(--sage-dark);}
+  .stage-title .sub{ color:var(--muted); font-size:.92rem; }
+
+  .subpage{ display:none; }
+  .subpage.active{ display:block; }
+
+  nav.bottomnav{
+    position:fixed;
+    bottom:0; left:0; right:0;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    background:#fff;
+    border-top:2px solid var(--line);
+    padding:10px 12px;
+    z-index:30;
+    box-shadow:0 -2px 8px rgba(0,0,0,.05);
+  }
+  nav.bottomnav button{
+    border:2px solid var(--line);
+    background:var(--cream);
+    color:var(--ink);
+    padding:9px 18px;
+    border-radius:999px;
+    font-size:.88rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.15s;
+  }
+  nav.bottomnav button:hover{ border-color:var(--rose-dark); }
+  nav.bottomnav button.active{
+    background:var(--rose-dark);
+    border-color:var(--rose-dark);
+    color:#fff;
+  }
+
+  @media print{
+    nav.tabs, nav.bottomnav{ display:none; }
+    .stagepanel{ display:block !important; page-break-after:always; }
+    .subpage{ display:block !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>🌱 שינה, ערות ופעילות בגישה המונטסורית — מדריך לתינוקות</h1>
+  <p>מדריך חי שגדל יחד עם התינוק/ת שלכם: אפשר לבחור שלב גיל ידנית מהתפריט למעלה, או להזין תאריך לידה כדי שהמדריך יעדכן את השלב הנוכחי אוטומטית.</p>
+  <div id="birthdateBox">
+    <label for="babyBirthdate">תאריך לידה (אופציונלי):</label>
+    <input type="date" id="babyBirthdate">
+  </div>
+  <div id="ageBanner"></div>
+</header>
+
+<nav class="tabs" id="tabsNav"></nav>
+
+<main>
+  <div id="stagesContainer"></div>
+
+  <section id="tracker">
+    <div class="stage-hero">
+      <h2>📔 יומן מעקב התפתחותי</h2>
+      <div class="sub">סמנו אבני דרך שאתם מבחינים בהן אצל התינוק/ת שלכם. ברגע שמתחילים להופיע סימונים של "החודש הבא" — זה הרמז לעבור לכרטיסיות הפעילות של השלב הבא במדריך. השמירה היא מקומית על המחשב הזה (בקובץ הזה בלבד).</div>
+    </div>
+    <div id="trackerMonths"></div>
+  </section>
+</main>
+
+<nav class="bottomnav" id="bottomNav" style="display:none;">
+  <button data-sub="home" onclick="setSubpage('home')">🌟 עכשיו</button>
+  <button data-sub="routine" onclick="setSubpage('routine')">🕐 שגרה יומית</button>
+  <button data-sub="activities" onclick="setSubpage('activities')">🃏 כרטיסי פעילות</button>
+</nav>
+
+<footer>
+  מדריך זה אינו תחליף לייעוץ רפואי/התפתחותי מקצועי — בכל חשש התפתחותי יש לפנות לרופא/ת הילדים או לאחות טיפת חלב.
+</footer>
+
+<div class="save-pill" id="savePill">✓ נשמר</div>
+
+<script>
+let babyBirthDate = null; // מוגדר על ידי המשתמש/ת דרך שדה תאריך הלידה, נשמר ב-localStorage
+
+function ageInMonthsAndDays(from, to){
+  let months = (to.getFullYear()-from.getFullYear())*12 + (to.getMonth()-from.getMonth());
+  let refDate = new Date(from.getFullYear(), from.getMonth()+months, from.getDate());
+  if(refDate > to){ months--; refDate = new Date(from.getFullYear(), from.getMonth()+months, from.getDate()); }
+  const days = Math.round((to - refDate)/(1000*60*60*24));
+  return {months, days};
+}
+
+const STAGES = [
+  {
+    id:'s0', range:'0–6 שבועות', minM:0, maxM:1.4,
+    title:'יילוד — היכרות ראשונה עם העולם',
+    wake:'30–60 דקות', naps:'4–6 נמנומים לא סדורים ביום', total:'16–18 שעות ביממה', night:'עדיין בלי הבחנה בין יום ולילה',
+    snapshot:[
+      '<b>מוטורי:</b> תנועות רפלקסיביות, מרים מעט ראש בשכיבה על הבטן.',
+      '<b>חושי:</b> רואה בחדות בטווח של כ-20–30 ס"מ, מגיב/ה חזק לקול ולריח של ההורה.',
+      '<b>רגשי:</b> נרגע/ת במגע, בעטיפה (סוואדל) ובתנועה קצבית.',
+      '<b>שינה:</b> מחזורי שינה קצרים מאוד (כ-45 דק׳), התעוררויות תכופות להנקה.'
+    ],
+    montessori:'השלב הזה הוא בעיקר על ביסוס ביטחון: מגע גוף, קול רגוע, והפרדה עדינה בין יום ולילה (אור וגירויים ביום, חושך ושקט בלילה). לפי הגישה המונטסורית, גם עכשיו אפשר להתחיל להניח את התינוק/ת ער/ה על הגב, על משטח בטוח בשכיבה חופשית, בלי מכשירים שמגבילים תנועה (בגדול-נדנדות/כיסאות רטט לא לשימוש קבוע).',
+    schedule:[
+      ['השכמה','feed','הנקה + מגע עור אל עור'],
+      ['+30–60 ד\'','play','ערות קצרה: מבט, מגע, קול רגוע'],
+      ['לפי סימני עייפות','sleep','נמנום (לרוב 30–90 ד\')'],
+      ['לאורך היום','feed','חוזר על עצמו כ-8–12 פעמים ביממה']
+    ],
+    activities:[
+      {icon:'🤱', title:'מגע עור אל עור', why:'מווסת דופק, נשימה וטמפרטורה, ותומך בקשר הורה-ילד ובהצלחת ההנקה.', how:'להניח את התינוק/ת על החזה החשוף (או קרוב לגוף) בזמן ערות רגועה, כ-10–20 דקות.', stop:'ברגע שמופיעים סימני חוסר נוחות (יבבות, פרצוף עצבני) — לעטוף ולהרגיע.', end:'לסיים בשירה שקטה או נדנוד עדין ולעבור להנקה/שינה.'},
+      {icon:'👀', title:'מעקב עיניים אחרי פנים/כרטיס ניגודיות', why:'מערכת הראייה עוד לא בשלה — ניגודים חדים (שחור-לבן) הם מה שהוא/היא באמת יכול/ה לראות ומעודדים מיקוד.', how:'להחזיק כרטיס ניגודיות או את הפנים שלך במרחק 20–25 ס"מ ולזוז לאט הצידה.', stop:'כ-1–2 דקות מספיקות; אם המבט "בורח" או מופיע ניפנוף ראש — לעצור.', end:'לסיים במגע ידיים או חיוך קרוב לפנים.'},
+      {icon:'🧺', title:'זמן בטן קצרצר', why:'מחזק שרירי צוואר וגב מגיל אפס, בפיקוח מלא.', how:'2–3 דקות על הבטן, ער/ה, על שמיכה על הרצפה, כמה פעמים ביום.', stop:'ברגע שהראש נופל בתשישות או מופיעה בכי — להפוך מיד.', end:'להרים, לחבק ולשבח בקול רגוע.'}
+    ]
+  },
+  {
+    id:'s1', range:'6–12 שבועות', minM:1.4, maxM:2.9,
+    title:'חודש 1.5–3 — לומד/ת לחייך ולהתמקד',
+    wake:'60–90 דקות', naps:'4–5 נמנומים', total:'~15–16 שעות ביממה', night:'מתחילים להתארך מקטעי שינה של 3–5 שעות',
+    snapshot:[
+      '<b>מוטורי:</b> שולט/ת טוב יותר בראש, מתחיל/ה "לדחוף" בזרועות בשכיבה על הבטן.',
+      '<b>חברתי:</b> חיוך חברתי אמיתי (לא רק רפלקסיבי), מתחיל/ה "לגרגר" ולהוציא צלילים.',
+      '<b>חושי:</b> הראייה מתבהרת, מתחיל/ה לעקוב אחרי עצמים בתנועה ולזהות פנים מוכרות.',
+      '<b>שינה:</b> יתכן "רגיעה" זמנית בשינה סביב 6 שבועות (עלייה בערנות/בכי — נורמלי ולא קשור לפעילות).'
+    ],
+    montessori:'זה הזמן להכניס מובייל תלוי ראשון (למשל מובייל מונרי שחור-לבן) בגובה עיניים מעל אזור שכיבה, לתלות אותו כך שאפשר להביט בו בלי מגע — מטרתו מיקוד ומעקב, לא תפיסה. חשוב להמשיך לתת חופש תנועה על הרצפה במקום כיסאות תפוסים/נדנדות לאורך זמן.',
+    schedule:[
+      ['השכמה','feed','הנקה'],
+      ['~60–90 ד\'','play','ערות: מובייל, שיחה, זמן בטן'],
+      ['בסימני עייפות','sleep','נמנום'],
+      ['חוזר 4–5 פעמים ביום','feed','הנקה + ערות + נמנום']
+    ],
+    activities:[
+      {icon:'🌀', title:'מובייל ניגודיות/מונרי', why:'מפתח מעקב עיניים, ריכוז ומיקוד חזותי — אבן יסוד לקריאה בעתיד.', how:'לתלות מעל אזור שכיבה בגובה כ-25–30 ס"מ מהפנים, בלי מגע יד. לתת להביט 3–5 דקות.', stop:'ברגע שהמבט משוטט או מופיעה עייפות — להוריד/לסובב הצידה.', end:'לסיים במגע ובקול שקט.'},
+      {icon:'🗣️', title:'שיחת "פינג פונג"', why:'מניחה את היסודות לשפה ולתקשורת דו-כיוונית.', how:'לחכות לצליל/חיוך של התינוק/ת, להגיב במילים וחיקוי, ולהמתין לתגובה נוספת.', stop:'אם מפנה מבט או "מכבה" — זה סימן שצריך הפסקה, לא כישלון.', end:'לסיים בחיבוק או נשיקה על המצח.'},
+      {icon:'🪞', title:'מראה בגובה הרצפה', why:'עניין עצום בפנים — גם הפנים של עצמם — תומך בהתפתחות חברתית-רגשית.', how:'להניח מראה בטיחותית בגובה העיניים בזמן בטן או שכיבה על הגב.', stop:'2–4 דקות מספיקות בגיל הזה.', end:'לקרוא לתינוק/ת בשם מול המראה ולחייך.'}
+    ]
+  },
+  {
+    id:'s2', range:'3–4 חודשים', minM:2.9, maxM:4,
+    title:'גילוי הידיים והרגליים',
+    wake:'75–120 דקות (כ-1:15–2:00 שעות)', naps:'4–5 נמנומים', total:'~15 שעות ביממה (עד 5 שעות ביום + 10–12 בלילה)', night:'לרוב עדיין 1–2 יקיצות להנקה — תקין לחלוטין בהנקה מלאה',
+    snapshot:[
+      '<b>מוטורי:</b> מגלה/ה את הידיים — מביט/ה בהן, חובט/ת, מביא/ה אותן לקו האמצע ולפה. מתחיל/ה "לתפוס" עצמים במרכז כף היד (לא עדיין עם האצבעות).',
+      '<b>חושי:</b> הכל נכנס לפה — זו הדרך העיקרית ללמוד מרקם, צורה וגודל, לא הרגל להילחם בו.',
+      '<b>רגשי-חברתי:</b> צחוק בקול רם, "שיחות" ארוכות יותר, מזהה קרובים מרחוק.',
+      '<b>גוף:</b> נשען יותר על האמות בשכיבה על הבטן, יתכנו ניסיונות ראשונים להתגלגל מהצד לגב.'
+    ],
+    montessori:'זה בדיוק השלב לעבור ממובייל "לצפייה" למובייל מגע (כדורי פעמונים, סרטים, טבעות קלות) שאפשר לחבוט בהם ולהרגיש. עקרון מפתח: לתלות/להניח עצמים בטווח יד ולא מעל הפנים בלבד, כדי לעודד חבטה ותפיסה יזומה. המשיכי לתת המון זמן על הרצפה בשכיבה חופשית — זה השלב שבו מתפתחת השליטה בגוף, ולא דרך ישיבה נתמכת מוקדם מדי.',
+    calloutText:'סביב 3–4 חודשים נפוצה "קפיצת גדילה"/רגרסיית שינה — מחזורי השינה מתבגרים ונהיים דומים למבוגר (עם יקיצות קלות בין מחזורים). זה יכול לגרום זמנית ליותר יקיצות בלילה. זה נורמלי, זמני, ולא קשור למשהו שעשית לא נכון בשגרה.',
+    schedule:[
+      ['07:00–08:00','feed','השכמה, החלפת חיתול והנקה/בקבוק'],
+      ['אחרי האכילה','wind','כמה דקות מנוחה בזקיפות/רגיעה קלה — לתת לאוכל "להתיישב" ולמנוע פליטות לפני מעבר לפעילות'],
+      ['לאחר המנוחה','play','זמן פעילות (למשל אחת מכרטיסי הפעילות: גילוי ידיים / סל אוצרות / זמן בטן)'],
+      ['בסימני עייפות','sleep','נמנום — המשך משתנה מאוד: לפעמים חצי שעה, לפעמים שעה, ולפעמים גם יותר'],
+      ['','note','המחזור הזה — השכמה/חיתול/אכילה ← מנוחה קצרה ← פעילות ← נמנום — חוזר על עצמו כמה פעמים במהלך היום, עד בערך השעה 17:00'],
+      ['18:00–19:00','play','טיול קבוע בחוץ, בצל — עוגן יומי קבוע (השעה המדויקת זזה קצת בין 18:00 ל-19:00, וזה בסדר)'],
+      ['19:30–20:00','wind','מתחיל להתעצבן ולהתעייף → מקלחת'],
+      ['אחרי המקלחת','feed','הנקה/בקבוק'],
+      ['~21:00','sleep','נרדם לשינת לילה'],
+      ['~03:00–04:00','feed','יקיצה קצרה להאכלת לילה — נורמלי לחלוטין בהנקה/בקבוק'],
+      ['אחרי ההאכלה','sleep','חזרה לישון עד ההשכמה הבאה ב-07:00–08:00, ואז מתחיל יום חדש לפי אותה שגרה']
+    ],
+    activities:[
+      {icon:'✋', title:'גילוי הידיים — צמידי פעמונים/רעשנים לשורש כף היד', why:'עוזר לתינוק/ת לקשר בין תנועת היד לצליל שהיא יוצרת — שלב קריטי בדרך לתפיסה מכוונת.', how:'לענוב רעשן רך/צמיד עם פעמון עדין על שורש כף היד בזמן ערות פעילה. לתת 5–8 דקות.', stop:'אם היד "נשכחת" בלי עניין, או שהתינוק/ת מתעצבן מהצמיד — להוריד מיד.', end:'להסיר בעדינות ולסיים בליטוף היד ומילה חיובית ("איזה ידיים חזקות יש לך!").'},
+      {icon:'🔔', title:'עצמים לחבטה ותפיסה בטווח יד (לא מעל הפנים)', why:'שונה ממובייל פסיבי — כאן התינוק/ת יוזם/ת מגע, וזה מפתח קואורדינציה עין-יד ותחושת "אני משפיע/ה על הסביבה".', how:'לתלות טבעת, סרט או כדור פעמונים רך בגובה החזה כשהתינוק/ת שוכב/ת על הגב, במרחק שמאפשר לגעת בקלות.', stop:'אחרי כמה נסיונות מוצלחים או ברגע שמפנה מבט/מתעצבן — להסיר.', end:'לתת רגע של שקט וחיבוק לפני שממשיכים הלאה.'},
+      {icon:'🧺', title:'סל אוצרות ראשוני', why:'מציע בחירה עצמאית מתוך כמה חפצים בטוחים — עקרון מונטסורי מרכזי של עצמאות מגיל אפס.', how:'סל נמוך עם 2–3 חפצים גדולים, קלים ובטוחים לפה (טבעת עץ, בד רך, כדור סיליקון). לשבת לצידו ולתת לבחור.', stop:'5–10 דקות בגיל הזה זה הרבה זמן; ברגע שמאבד עניין — לסיים בלי לדחוף עוד.', end:'לפנות את הסל בשקט ולעבור לפעילות רגועה יותר (הנקה, נדנוד).'},
+      {icon:'🪞', title:'זמן בטן + מראה', why:'משלב חיזוק שרירי גב וצוואר עם עניין חברתי-רגשי בפנים.', how:'להניח על שמיכה מול מראה בטיחותית, בשכיבה על הבטן, 3–5 דקות כמה פעמים ביום.', stop:'ברגע שהראש "צונח" מעייפות שרירים — לעצור מיד ולהפוך.', end:'להפוך לשכיבה על הגב, לחבק ולשבח.'},
+      {icon:'🎶', title:'שירה + נענוע קצבי', why:'תומך בוויסות רגשי ומכין לקראת מעבר לשינה בלי גירוי יתר.', how:'לשיר שיר שקט תוך כדי נדנוד עדין בזרועות, כחלק מהמעבר בין ערות לנמנום.', stop:'להתחיל להאט את הקצב וללחש בהדרגה כשמבחינים בסימני עייפות ראשונים.', end:'לסיים בשקט מוחלט ולהניח לישון.'},
+      {icon:'🌳', title:'טיול יומי בחוץ, בצל', why:'אור יום ואוויר פתוח עוזרים לווסת את השעון הביולוגי ולחדד את ההבחנה בין יום ולילה, ומעניקים גירוי חושי חדש (רוחות, קולות, תנועה) בעוצמה נמוכה ונעימה.', how:'טיול קבוע בסביבות 18:00–19:00, תמיד בצל מלא (לא שמש ישירה על העור הרך), בעגלה או בסלינג.', stop:'אם מופיעים סימני עייפות/רעב לפני סוף הטיול — לקצר ולחזור הביתה בלי להמתין.', end:'לחזור הביתה ברוגע ולעבור ישר לשגרת הערב (מקלחת).'}
+    ]
+  },
+  {
+    id:'s3', range:'4–6 חודשים', minM:4, maxM:6,
+    title:'מתהפך/ת, יושב/ת בתמיכה, מתחיל/ה "לחקור" בעוצמה',
+    wake:'~1:30–2:30 שעות', naps:'3–4 נמנומים', total:'~14–15 שעות ביממה', night:'לילות ארוכים יותר נפוצים, אך עדיין תקין להתעורר להנקה',
+    snapshot:[
+      '<b>מוטורי:</b> מתהפך/ת מהבטן לגב ולהפך (לרוב עד 6 חודשים), יושב/ת עם תמיכה, מתחיל/ה לדחוף רגליים בעמידה על ברכי המבוגר/ת.',
+      '<b>ידיים:</b> תפיסה בכל כף היד ("palmar grasp"), מעביר/ה חפץ מיד ליד, מגיע/ה בכוונה לעצמים.',
+      '<b>חושי:</b> חקירה אינטנסיבית בפה ממשיכה; מזהה שמות של הורים/אחים.',
+      '<b>תזונה:</b> לקראת גיל 6 חודשים מתחילים לשקול הכנסת מזון מוצק (בהתאם להנחיית רופא/ת הילדים).'
+    ],
+    montessori:'עכשיו רלוונטי להוסיף "אזור תנועה" פתוח בשטיח נקי, בלי משחקייה תפוסה. מומלץ להימנע מלשבת אותו/ה בכפייה לפני שהוא/היא מגיע/ה לישיבה עצמאית — לתת לגוף להגיע לכל שלב בזמנו. אפשר להציג סל אוצרות מגוון יותר (מרקמים, חומרים טבעיים: עץ, מתכת, בד, סיליקון).',
+    schedule:[
+      ['השכמה','feed','הנקה'],
+      ['~90–120 ד\'','play','ערות: תנועה על הרצפה + סל אוצרות מורחב'],
+      ['בסימני עייפות','sleep','נמנום 1 (הארוך ביותר לרוב)'],
+      ['אחה"צ','feed','הנקה + ערות'],
+      ['אחה"צ מאוחר','sleep','נמנום 2'],
+      ['לקראת ערב','play','ערות קצרה + שגרת הרגעה'],
+      ['ייתכן נמנום קצר 3','sleep','"קטנצ\'יק" לפני הלילה אם צריך'],
+      ['שעת שינה','wind','אמבטיה, עיסוי, הנקה, שינה']
+    ],
+    activities:[
+      {icon:'🔄', title:'תרגול התהפכות חופשי', why:'התהפכות היא אבן דרך מוטורית משמעותית שמתפתחת הכי טוב דרך תרגול עצמאי, לא "לימוד".', how:'לתת המון זמן פתוח על שטיח, בלי לדחוף/לסובב את הגוף ידנית. אפשר לפתות בעדינות עם צעצוע לצד.', stop:'ברגע שמתסכל/ת (בכי ממושך, לא רק מאמץ) — לעזור ולתת הפסקה.', end:'לשבח על המאמץ גם אם לא הצליח/ה, ולעבור למשהו מרגיע.'},
+      {icon:'🧺', title:'סל אוצרות מורחב', why:'מגוון מרקמים וחומרים טבעיים מפתח את החושים בצורה עשירה יותר מצעצוע פלסטיק אחד.', how:'5–6 חפצים ביתיים בטוחים (כפית עץ, מטלית משי, טבעת מתכת חלקה) בסל נמוך, ישיבה נתמכת לצידו/ה.', stop:'10–15 דקות; לעצור כשהעניין דועך או כשהכל כבר בפה בלי חקירה.', end:'לסיים בשיר קצר ופינוי הסל בשקט.'},
+      {icon:'🪑', title:'ישיבה נתמכת קצרה', why:'מחזקת שרירי ליבה לקראת ישיבה עצמאית, בלי ללחוץ על שלב מוקדם מדי.', how:'לשבת ברכיים או בעזרת כרית תמיכה, 5 דקות, עם צעצוע מולו/ה.', stop:'ברגע שמתחיל/ה "לצנוח" מעייפות שרירים — להפסיק.', end:'להחזיק, לחבק ולעבור לפעילות שכיבה.'}
+    ]
+  },
+  {
+    id:'s4', range:'6–9 חודשים', minM:6, maxM:9,
+    title:'יושב/ת עצמאי/ת, מתחיל/ה לזחול, אוכל/ת מוצקים',
+    wake:'2–3 שעות', naps:'2–3 נמנומים', total:'~13–14 שעות ביממה', night:'רבים מגיעים ל-10–12 שעות רצופות, גם בהנקה מלאה',
+    snapshot:[
+      '<b>מוטורי:</b> ישיבה עצמאית יציבה, זחילה (או גרסאות כמו זחילת בטן/גלישה), עומד/ת בתמיכה.',
+      '<b>ידיים:</b> תפיסת "מלקחיים" ראשונית (אצבע-אגודל), מעביר/ה חפצים בין הידיים בשליטה.',
+      '<b>קוגניטיבי:</b> מתפתחת הבנת קביעות האובייקט (יודע/ת שדבר שנעלם עדיין קיים) — משחקי "קוקו" נהיים משמעותיים.',
+      '<b>רגשי:</b> עשויה להופיע חרדת נטישה/זרים — נורמלי לחלוטין, לא "רגרסיה".'
+    ],
+    montessori:'זה הזמן ל"אזור תנועה" בטוח ופתוח ולעודד תזוזה עצמאית לעבר עצמים מעניינים, במקום להביא הכל אליו/ה. אפשר להציג "קופסת אובייקטים קבועה" (Object Permanence Box) — קופסה עם חור וכדור שנופל ונעלם ואז מוצא. תמיכה בעצמאות באכילה: קערית וכפית קטנה, לתת לנסות להאכיל את עצמו/ה גם אם מתלכלך.',
+    schedule:[
+      ['השכמה','feed','הנקה +/- ארוחת בוקר'],
+      ['~2–2.5 שעות ערות','play','זחילה, קופסת אובייקטים, ארוחה'],
+      ['','sleep','נמנום 1'],
+      ['אחה"צ','feed','הנקה + ארוחה'],
+      ['~2–3 שעות ערות','play','משחק פעיל, זמן חוץ אם אפשר'],
+      ['','sleep','נמנום 2 (ולעיתים נמנום 3 קצר לקראת ערב)'],
+      ['שעת שינה','wind','אמבטיה, הנקה, שינה']
+    ],
+    activities:[
+      {icon:'📦', title:'קופסת קביעות האובייקט', why:'מתרגלת הבנה קוגניטיבית מרכזית ומחזקת תיאום עין-יד באופן ממוקד.', how:'קופסת עץ/קרטון עם חור עגול וכדור — התינוק/ת מכניס/ה, הכדור נעלם, מגלגלים אליו/ה שוב.', stop:'5–10 חזרות בממוצע לפני שהעניין דועך.', end:'לשבח ולמחוא כפיים איתו/ה כשהוא/היא "מוצא/ת" את הכדור.'},
+      {icon:'🥄', title:'האכלה עצמאית מודרכת', why:'בונה עצמאות, שליטה מוטורית עדינה, ויחס בריא לאוכל מגיל צעיר.', how:'לתת קערית וכפית משלו/ה לצד ההאכלה שלך, לאפשר לו/ה לנסות בעצמו/ה גם אם מתלכלך/ת.', stop:'ברגע שמפנה ראש/סוגר/ת פה בעקביות — הארוחה נגמרה, לא לאלץ.', end:'לסיים בניגוב עדין ומילה חיובית, לא בביקורת על הבלגן.'},
+      {icon:'🐾', title:'עידוד זחילה במרחב פתוח', why:'תנועה עצמאית במרחב מפתחת ביטחון, תיאום גוף, ותפיסת מרחב.', how:'להניח צעצוע מעניין קצת מחוץ להישג יד על שטיח בטוח, ולתת לו/ה לזוז אליו.', stop:'אם מתוסכל/ת מעבר לרגע קצר — לקרב מעט ולעודד.', end:'לחגוג כל ניסיון תזוזה, גם חלקי.'}
+    ]
+  },
+  {
+    id:'s5', range:'9–12 חודשים', minM:9, maxM:12.5,
+    title:'עומד/ת, מתקדם/ת לעצמאות, מילים ראשונות',
+    wake:'2.5–3.5 שעות (עד כ-4 שעות סמוך לגיל שנה)', naps:'2 נמנומים (לרוב)', total:'~13 שעות ביממה', night:'לרוב 10–12 שעות, נסיגות זמניות אפשריות סביב חרדת פרידה',
+    snapshot:[
+      '<b>מוטורי:</b> מזדקף/ת בעזרת רהיטים ("cruising"), עשויה לעשות צעדים ראשונים לקראת סוף התקופה.',
+      '<b>ידיים:</b> תפיסת מלקחיים מדויקת (אוסף/ת חפצים קטנים), מצביע/ה על דברים.',
+      '<b>שפה:</b> "מאמא/אבא" מכוונים, מבין/ה מילים פשוטות ("בוא/י", "לא"), מבצע/ת בקשות פשוטות ("תן/י לי").',
+      '<b>רגשי:</b> חרדת פרידה עשויה להתחזק — זו התקדמות בקשר, לא נסיגה.'
+    ],
+    montessori:'המרחב הביתי צריך לתמוך בעמידה עצמאית: מדף נמוך עם 2–3 צעצועים בלבד (החלפה תקופתית ולא הכל בבת אחת), מוט/רהיט יציב לאחיזה. עכשיו גם זמן טוב להכניס ספרי לוח לקריאה משותפת קצרה, ולתת עוד ועוד הזדמנויות "לעשות לבד" (לשתות מכוס פתוחה, להכניס חפץ לקופסה).',
+    schedule:[
+      ['השכמה','feed','הנקה + ארוחת בוקר'],
+      ['~2.5–3 שעות ערות','play','עמידה/הליכה נתמכת, מדף פעילות'],
+      ['','sleep','נמנום 1'],
+      ['אחה"צ','feed','ארוחה + הנקה'],
+      ['~3 שעות ערות','play','משחק חוץ, ספר, מוזיקה ותנועה'],
+      ['','sleep','נמנום 2'],
+      ['שעת שינה','wind','שגרת ערב קבועה, הנקה, שינה']
+    ],
+    activities:[
+      {icon:'📚', title:'קריאת ספר לוח משותפת', why:'מפתחת שפה, קשב משותף ואהבת קריאה מגיל צעיר.', how:'לשבת בחיקך, לתת לו/ה להפוך דפים בעצמו/ה, לקרוא בקול עם אינטונציה, לתת לו/ה למשש.', stop:'2–4 דקות זה נורמלי בגיל הזה; אם מנסה לברוח — לסגור בלי מאבק.', end:'לסיים בחיבוק ולומר "איזה ספר יפה קראנו".'},
+      {icon:'🚶', title:'הליכה נתמכת/עידוד עמידה', why:'תרגול שיווי משקל וכוח רגליים לקראת הליכה עצמאית.', how:'לתת לו/ה להיאחז ברהיט יציב או בידיים שלך ולהתנסות בהזדקפות ובצעדים.', stop:'ברגע שמתעייף/ת ורוצה לשבת — לתת לו/ה.', end:'לשבח, לחבק ולמעבר לפעילות ישיבה רגועה.'},
+      {icon:'🧊', title:'מדף פעילות עם 2–3 חפצים בלבד', why:'ריבוי צעצועים מבלבל ומעכב ריכוז — עקרון מונטסורי של "פחות זה יותר".', how:'להציג 2–3 חפצים בלבד על מדף נמוך בהישג יד, להחליף כל שבוע-שבועיים.', stop:'לתת לו/ה לבחור ולסיים לבד; לא לדחוף מעבר לצעצוע הבא.', end:'לסדר יחד (או לדגמן סידור) בסוף הפעילות.'}
+    ]
+  }
+];
+
+// Universal cues (shown inside every stage panel)
+const CUES_HTML = `
+<div class="cue-box">
+  <div class="cue-col tired">
+    <h4>😴 סימני עייפות מוקדמים</h4>
+    <ul>
+      <li>פיהוקים, שפשוף עיניים</li>
+      <li>מבט "בורח"/מרוחק</li>
+      <li>משיכת אוזניים</li>
+      <li>אודם קל מעל הגבות</li>
+    </ul>
+  </div>
+  <div class="cue-col over">
+    <h4>🚫 סימני עומס חושי</h4>
+    <ul>
+      <li>הסטת מבט/ראש הצידה</li>
+      <li>קשת גב, הצטנפות</li>
+      <li>ידיים קפוצות, נדנוד ראש</li>
+      <li>הפסקת "שיתוף פעולה" בפעילות</li>
+    </ul>
+  </div>
+  <div class="cue-col happy">
+    <h4>😊 סימני מעורבות חיובית</h4>
+    <ul>
+      <li>מבט ממוקד וממושך</li>
+      <li>תנועות ידיים/רגליים נלהבות</li>
+      <li>צלילים, גיחוך, חיוך</li>
+      <li>חזרה יזומה על פעולה</li>
+    </ul>
+  </div>
+</div>
+<p style="font-size:.85rem;color:var(--muted);margin-top:10px;"><b>כלל אצבע:</b> לעצור פעילות בסימן הראשון (עייפות/עומס), לפני שמגיעים לבכי. סיום מוקדם ורגוע → חוויה חיובית שהיא תרצה לחזור עליה. אין "לדחוף" עוד כמה דקות "כי כיף לה" — זה בדיוק מה שגורם להצפה.</p>
+`;
+
+const PRINCIPLES_HTML = `
+<div class="principles">
+  <div class="principle"><b>חופש תנועה</b>לעדיף שכיבה חופשית על הרצפה על פני כיסאות/נדנדות תפוסות לאורך זמן — הגוף לומד לשלוט בעצמו דרך תנועה עצמאית.</div>
+  <div class="principle"><b>סביבה מוכנה</b>מרחב בטוח, נקי, עם מעט חפצים איכותיים בהישג יד — לא הצפה של צעצועים.</div>
+  <div class="principle"><b>אמון ביכולת</b>לתת רגע לנסות לבד לפני שממהרים לעזור — גם בתסכול קל יש למידה.</div>
+  <div class="principle"><b>תצפית לפני התערבות</b>לעצור ולהסתכל מה מעניין אותה עכשיו, ואז להצטרף — לא להוביל את המשחק.</div>
+  <div class="principle"><b>כבוד דרך שפה</b>לתאר בקול מה עומד לקרות (״אני עכשיו מחליפה לך חיתול״) גם לפני שהיא מבינה מילים.</div>
+  <div class="principle"><b>חומרים טבעיים ופשוטים</b>עץ, בד, מתכת — עדיפים על צעצועים מוארים/מרעישים שמעודדים צפייה פסיבית.</div>
+</div>
+`;
+
+function tagLabel(t){
+  return {sleep:'שינה',feed:'האכלה',play:'פעילות',wind:'הרגעה'}[t] || t;
+}
+
+function renderStages(){
+  const nav = document.getElementById('tabsNav');
+  const container = document.getElementById('stagesContainer');
+  STAGES.forEach((s,i)=>{
+    const btn = document.createElement('button');
+    btn.textContent = s.range;
+    btn.dataset.target = s.id;
+    btn.onclick = ()=>selectStage(s.id);
+    nav.appendChild(btn);
+
+    const panel = document.createElement('div');
+    panel.className = 'stagepanel';
+    panel.id = s.id;
+
+    let calloutHtml = s.calloutText ? `<div class="callout"><b>שימי לב:</b> ${s.calloutText}</div>` : '';
+
+    let scheduleRows = s.schedule.map(r=>{
+      if(r[1] === 'note'){
+        return `<div class="row note-row"><div>${r[2]}</div></div>`;
+      }
+      return `<div class="row"><div class="time">${r[0]}</div><div><span class="tag ${r[1]}">${tagLabel(r[1])}</span>${r[2]}</div></div>`;
+    }).join('');
+
+    let cardsHtml = s.activities.map(a=>`
+      <div class="card">
+        <div class="card-head"><span class="icon">${a.icon}</span><h4>${a.title}</h4></div>
+        <div class="card-body">
+          <div class="field why"><span class="k">למה זה חשוב</span><p>${a.why}</p></div>
+          <div class="field how"><span class="k">איך ומה עושים</span><p>${a.how}</p></div>
+          <div class="field stop"><span class="k">מתי לעצור</span><p>${a.stop}</p></div>
+          <div class="field end"><span class="k">לסיום בחוויה חיובית</span><p>${a.end}</p></div>
+        </div>
+      </div>
+    `).join('');
+
+    panel.innerHTML = `
+      <div class="stage-title">
+        <h2>${s.title}</h2>
+        <div class="sub">טווח גיל: ${s.range} <span class="current-badge" id="badge-${s.id}" style="display:none;">· <b style="color:var(--rose-dark)">זה השלב הנוכחי 🌿</b></span></div>
+      </div>
+
+      <div class="subpage" data-sub="home">
+        <div class="stage-hero">
+          <div class="stat-row">
+            <div class="stat"><div class="num">${s.wake}</div><div class="lbl">חלון ערות</div></div>
+            <div class="stat"><div class="num">${s.naps}</div><div class="lbl">נמנומים</div></div>
+            <div class="stat"><div class="num">${s.total}</div><div class="lbl">שינה כוללת</div></div>
+            <div class="stat"><div class="num">${s.night}</div><div class="lbl">שינת לילה</div></div>
+          </div>
+          ${calloutHtml}
+        </div>
+
+        <section class="block">
+          <h3>🔍 מה קורה עכשיו התפתחותית</h3>
+          <ul class="snapshot">${s.snapshot.map(x=>`<li>${x}</li>`).join('')}</ul>
+        </section>
+
+        <section class="block">
+          <h3>🌱 עקרון מונטסורי לשלב הזה</h3>
+          <p style="font-size:.92rem;">${s.montessori}</p>
+        </section>
+      </div>
+
+      <div class="subpage" data-sub="routine">
+        <section class="block">
+          <h3>🕐 שגרת יום לדוגמה (התאימו לפי סימני התינוק/ת שלכם, לא לפי השעון בהכרח)</h3>
+          <div class="rhythm">${scheduleRows}</div>
+        </section>
+      </div>
+
+      <div class="subpage" data-sub="activities">
+        <section class="block">
+          <h3>🃏 כרטיסי פעילות</h3>
+          <div class="cards-grid">${cardsHtml}</div>
+        </section>
+
+        <section class="block">
+          <h3>🚦 איך לזהות מתי לעצור</h3>
+          ${CUES_HTML}
+        </section>
+      </div>
+    `;
+    container.appendChild(panel);
+  });
+
+  // principles + tracker tab button
+  const principlesBtn = document.createElement('button');
+  // Add general principles panel at top as an intro section (before first stage)
+  const introPanel = document.createElement('div');
+  introPanel.className = 'stagepanel';
+  introPanel.id = 'intro';
+  introPanel.innerHTML = `
+    <div class="stage-hero">
+      <h2>🌿 עקרונות מונטסוריים כלליים לתקופת התינקות (0–12 חודשים)</h2>
+      <div class="sub">הרעיונות האלה חוזרים בכל שלב גיל — הם הבסיס שממנו נגזרות כל הפעילויות במדריך.</div>
+    </div>
+    ${PRINCIPLES_HTML}
+    <section class="block">
+      <h3>🚦 שפת הגוף הכללית — עייפות, עומס ומעורבות</h3>
+      ${CUES_HTML}
+    </section>
+  `;
+  container.insertBefore(introPanel, container.firstChild);
+  const introBtn = document.createElement('button');
+  introBtn.textContent = '🌿 עקרונות כלליים';
+  introBtn.dataset.target = 'intro';
+  introBtn.onclick = ()=>selectStage('intro');
+  nav.insertBefore(introBtn, nav.firstChild);
+
+  const trackerBtn = document.createElement('button');
+  trackerBtn.textContent = '📔 יומן מעקב';
+  trackerBtn.className = 'tracker-btn';
+  trackerBtn.onclick = ()=>selectStage('tracker');
+  nav.appendChild(trackerBtn);
+}
+
+let currentSubpage = 'home';
+
+function setSubpage(name){
+  currentSubpage = name;
+  document.querySelectorAll('.subpage').forEach(p=>p.classList.toggle('active', p.dataset.sub===name));
+  document.querySelectorAll('#bottomNav button').forEach(b=>b.classList.toggle('active', b.dataset.sub===name));
+}
+
+function selectStage(id){
+  document.querySelectorAll('.stagepanel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tracker').classList.remove('active');
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+
+  if(id === 'tracker'){
+    document.getElementById('tracker').classList.add('active');
+  } else {
+    document.getElementById(id).classList.add('active');
+  }
+  const btn = [...document.querySelectorAll('nav.tabs button')].find(b=>b.dataset.target === id || (id==='tracker' && b.classList.contains('tracker-btn')));
+  if(btn) btn.classList.add('active');
+
+  const bottomNav = document.getElementById('bottomNav');
+  const isStagePage = STAGES.some(s=>s.id===id);
+  bottomNav.style.display = isStagePage ? 'flex' : 'none';
+  if(isStagePage){ setSubpage(currentSubpage); }
+
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Milestone tracker data: month -> list of milestone strings
+const MONTH_MILESTONES = {
+  1:['מרים/ה ראש לרגע בשכיבה על הבטן','מגיב/ה לקול חזק','עוקב/ת קצת אחרי פנים קרובות','חיוך ראשון (עשוי להיות רפלקסיבי)'],
+  2:['חיוך חברתי אמיתי','מוציא/ה צלילי "גרגור"','עוקב/ת אחרי עצם נע לרוחב','מתחיל/ה לשלוט טוב יותר בראש'],
+  3:['מגלה את הידיים — מביט/ה בהן','חובט/ת בעצמים בטווח יד','מביא/ה ידיים לקו האמצע ולפה','מרים/ה חזה בזרועות בשכיבה על הבטן','צוחק/ת בקול'],
+  4:['תופס/ת עצם ומחזיק/ה לרגע','מתחיל/ה לנסות להתגלגל','מזהה ומחפש/ת קול מוכר','שיחות "פינג פונג" ארוכות יותר'],
+  5:['מתהפך/ת מהבטן לגב','מעביר/ה חפץ מיד ליד','יושב/ת עם תמיכה טובה','מגיע/ה בכוונה לעצמים'],
+  6:['מתהפך/ת לשני הכיוונים','יושב/ת עם תמיכה קלה/עצמאית לרגעים','מתחיל/ה לשקול הכנסת מוצקים','מזהה שמות של בני משפחה קרובים'],
+  7:['יושב/ת באופן עצמאי ויציב','מעביר/ה משקל קדימה לקראת זחילה','אוכל/ת מוצקים במרקם מתאים','מגיב/ה לשם שלו/שלה'],
+  8:['מתחיל/ה לזחול (או וריאציה)','מבין/ה קביעות אובייקט (מחפש/ת דבר שנעלם)','תפיסת מלקחיים ראשונית','עשויה להראות חרדת זרים'],
+  9:['זוחל/ת בביטחון','מתרומם/ת לעמידה בעזרת רהיט','מצביע/ה על דברים','אומר/ת "מאמא/אבא" (לאו דווקא מכוון)'],
+  10:['עומד/ת בתמיכה, "cruising" לאורך רהיטים','תפיסת מלקחיים מדויקת','מבין/ה מילים/בקשות פשוטות','משחק/ת "תן וקח"'],
+  11:['עשוי/ה לעמוד לבד לרגע','מבצע/ת בקשות פשוטות ("תן/י לי")','מחקה מחוות (נפנוף שלום)','שותה מכוס בעזרה'],
+  12:['צעדים ראשונים (בטווח רחב — גם מאוחר יותר תקין)','מילה מכוונת ראשונה או שתיים','מצביע/ה כדי לתקשר רצון','משחק/ת חיקוי (מוחא/ת כפיים)']
+};
+
+function monthLabel(m){ return 'חודש '+m; }
+
+function renderTracker(){
+  const wrap = document.getElementById('trackerMonths');
+
+  Object.keys(MONTH_MILESTONES).forEach(mKey=>{
+    const m = parseInt(mKey);
+    const div = document.createElement('div');
+    div.className = 'tracker-month';
+    div.dataset.month = m;
+    const items = MONTH_MILESTONES[m];
+    div.innerHTML = `
+      <h3>${monthLabel(m)} <span class="badge" style="display:none;">החודש הנוכחי</span></h3>
+      <div class="milestone-list">
+        ${items.map((it,idx)=>`
+          <label>
+            <input type="checkbox" data-month="${m}" data-idx="${idx}">
+            <span>${it}</span>
+          </label>
+        `).join('')}
+      </div>
+      <span class="tracker-note-label">הערות חופשיות (מה עוד שמת לב אליו החודש):</span>
+      <textarea data-notemonth="${m}" placeholder="לדוגמה: מביא/ה ידיים לפה כל הזמן, נהנה/ית מאוד מהמובייל..."></textarea>
+    `;
+    wrap.appendChild(div);
+  });
+
+  loadTrackerState();
+
+  wrap.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change', saveTrackerState);
+  });
+  wrap.querySelectorAll('textarea').forEach(ta=>{
+    ta.addEventListener('input', debounce(saveTrackerState, 500));
+  });
+}
+
+function debounce(fn, ms){
+  let t;
+  return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), ms); };
+}
+
+const STORAGE_KEY = 'montessori-guide-tracker-v1';
+
+function saveTrackerState(){
+  const state = {checks:{}, notes:{}};
+  document.querySelectorAll('#trackerMonths input[type=checkbox]').forEach(cb=>{
+    state.checks[cb.dataset.month+'-'+cb.dataset.idx] = cb.checked;
+  });
+  document.querySelectorAll('#trackerMonths textarea').forEach(ta=>{
+    state.notes[ta.dataset.notemonth] = ta.value;
+  });
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    showSavePill();
+  }catch(e){ /* localStorage may be unavailable when opened via file:// in some browsers */ }
+}
+
+function loadTrackerState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const state = JSON.parse(raw);
+    Object.keys(state.checks||{}).forEach(k=>{
+      const [m,idx] = k.split('-');
+      const cb = document.querySelector(`#trackerMonths input[data-month="${m}"][data-idx="${idx}"]`);
+      if(cb) cb.checked = state.checks[k];
+    });
+    Object.keys(state.notes||{}).forEach(m=>{
+      const ta = document.querySelector(`#trackerMonths textarea[data-notemonth="${m}"]`);
+      if(ta) ta.value = state.notes[m];
+    });
+  }catch(e){}
+}
+
+let savePillTimeout;
+function showSavePill(){
+  const pill = document.getElementById('savePill');
+  pill.classList.add('show');
+  clearTimeout(savePillTimeout);
+  savePillTimeout = setTimeout(()=>pill.classList.remove('show'), 1200);
+}
+
+function renderAgeBanner(){
+  const banner = document.getElementById('ageBanner');
+  if(!babyBirthDate){
+    banner.textContent = 'הזינו תאריך לידה למעלה כדי לראות את הגיל והשלב המתאים אוטומטית';
+    return;
+  }
+  const {months, days} = ageInMonthsAndDays(babyBirthDate, new Date());
+  banner.textContent = `גיל היום: ${months} חודשים ו-${days} ימים`;
+}
+
+function updateCurrentBadges(){
+  document.querySelectorAll('.current-badge').forEach(b=>b.style.display='none');
+  document.querySelectorAll('.tracker-month').forEach(d=>d.classList.remove('current'));
+  document.querySelectorAll('.tracker-month .badge').forEach(b=>b.style.display='none');
+  if(!babyBirthDate) return;
+  const {months} = ageInMonthsAndDays(babyBirthDate, new Date());
+  const stage = STAGES.find(s=> months >= s.minM && months < s.maxM) || STAGES[STAGES.length-1];
+  const badge = document.getElementById('badge-'+stage.id);
+  if(badge) badge.style.display = 'inline';
+  const highlightMonth = Math.min(Math.max(months+1,1),12);
+  const monthDiv = [...document.querySelectorAll('.tracker-month')].find(d=>d.dataset.month===String(highlightMonth));
+  if(monthDiv){
+    monthDiv.classList.add('current');
+    const b = monthDiv.querySelector('.badge');
+    if(b) b.style.display='inline-block';
+  }
+}
+
+const BIRTHDATE_STORAGE_KEY = 'montessori-guide-birthdate-v1';
+
+function loadBirthdate(){
+  try{
+    const raw = localStorage.getItem(BIRTHDATE_STORAGE_KEY);
+    if(raw){
+      babyBirthDate = new Date(raw);
+      document.getElementById('babyBirthdate').value = raw;
+    }
+  }catch(e){}
+}
+
+function onBirthdateChange(){
+  const val = document.getElementById('babyBirthdate').value;
+  if(!val){ babyBirthDate = null; }
+  else{
+    babyBirthDate = new Date(val);
+    try{ localStorage.setItem(BIRTHDATE_STORAGE_KEY, val); }catch(e){}
+  }
+  renderAgeBanner();
+  updateCurrentBadges();
+  autoSelectCurrentStage();
+}
+
+function autoSelectCurrentStage(){
+  if(!babyBirthDate){
+    selectStage(STAGES[0].id);
+    return;
+  }
+  const {months} = ageInMonthsAndDays(babyBirthDate, new Date());
+  const stage = STAGES.find(s=> months >= s.minM && months < s.maxM) || STAGES[STAGES.length-1];
+  selectStage(stage.id);
+}
+
+renderStages();
+renderTracker();
+document.getElementById('babyBirthdate').addEventListener('change', onBirthdateChange);
+loadBirthdate();
+renderAgeBanner();
+updateCurrentBadges();
+autoSelectCurrentStage();
+</script>
+</body>
+</html>
